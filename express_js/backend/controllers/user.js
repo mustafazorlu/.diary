@@ -66,7 +66,7 @@ const deleteUser = (req, res) => {
 const updateUser = (req, res) => {
     const id = req.params.id;
 
-    const user = users.find((u) => u.id === Number(id));
+    const user = users.find((u) => u.id === id);
 
     if (!user) {
         res.status(400).send("kullanici bulunamadi");
