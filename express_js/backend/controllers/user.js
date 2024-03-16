@@ -2,14 +2,14 @@ import { v4 as uuid } from "uuid";
 
 let users = [
     {
-        id: 1,
+        id: uuid(),
         name: "john",
         email: "john@example.com",
         country: "turkey",
         contact: "123456789",
     },
     {
-        id: 2,
+        id: uuid(),
         name: "ash",
         email: "ash@example.com",
         country: "sweden",
