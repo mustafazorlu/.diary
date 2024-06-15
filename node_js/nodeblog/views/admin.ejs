@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('./components/head')%>
+
+<body>
+    <%-include('./components/header')%>
+
+    <section>
+        <a href="/admin/add">yeni yazı ekle</a>
+        <h2>Admin paneli</h2>
+
+        <ul>
+            <% blogs.forEach(blog => {%>
+            <li>
+                <p><%=blog.title%></p>
+                <a class="del" data-doc="<%=blog._id%>">sil</a>
+            </li>
+            <% })%>
+
+        </ul>
+    </section>
+
+    <script>
+        const del = document.querySelector('a.del');
+
+        del.addEventListener('click', e => {
+            const endpoint = `/admin/delete/${del.dataset.doc}`
+
+            fetch(endpoint, {
+                    method: 'DELETE'
+                })
+                .then((response) => {
+                    response.json()
+                })
+                .then((data) => {
+                    window.location.href = data.link
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        })
+    </script>
+</body>
+
+</html>

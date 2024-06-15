@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include('./components/head')%>
+
+<body>
+    <%-include('./components/header')%>
+
+    <section>
+        <form action="/admin/add" method="post">
+            <input type="text" name="title" placeholder="title" required>
+            <input type="text" name="short" placeholder="short" required>
+            <input type="text" name="long" placeholder="long" required>
+            
+            <input type="submit" value="ekle">
+        </form>
+    </section>
+</body>
+
+</html>

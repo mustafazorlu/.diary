@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 const server = http.createServer((req, res) => {
     res.setHeader("Content-Type", "text/html");
@@ -16,7 +17,7 @@ const server = http.createServer((req, res) => {
             break;
         case "/about-us":
             res.statusCode = 301;
-            res.setHeader("Location", "/about")
+            res.setHeader("Location", "/about");
             break;
         default:
             path += "404.html";
@@ -41,3 +42,18 @@ const server = http.createServer((req, res) => {
 server.listen(3000, "localhost", () => {
     console.log("3000 portu dinleniyor");
 });
+
+let nums = [23, 45, 65, 89];
+
+_.each(nums, (val, keys) => {
+    console.log(keys, val);
+});
+
+let num = _.random(0, 20);
+console.log(num);
+
+let greeting = _.once(() => {
+    console.log("merhabaaa");
+});
+
+greeting();

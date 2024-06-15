@@ -1,0 +1,46 @@
+body {
+    background-color: beige;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 1rem;
+    border-bottom: 3px solid #000;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-left: 400px;
+
+}
+
+nav ul li {
+    margin-right: 30px;
+    list-style: none;
+}
+
+section {
+    max-width: 800px;
+    margin: 40px auto;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 40px auto;
+}
+
+form input {
+    margin-top: 10px;
+    padding: 5px 10px
+}

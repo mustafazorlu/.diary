@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include('./components/head')%>
+
+<body>
+    <%-include('./components/header')%>
+    <section>
+        <h2>Yazılar</h2>
+
+        <ul>
+            <% blogs.forEach(blog => {%>
+            <li>
+                <a href="/blogs/<%=blog._id%>"><%=blog.title%></a>
+                <p><%=blog.short%></p>
+            </li>
+            <% })%>
+
+        </ul>
+    </section>
+
+
+
+</body>
+
+</html>
