@@ -2,10 +2,13 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Blog = require("./models/blogs.js");
+const cookieParser = require("cookie-parser");
 
 const adminRoutes = require("./routes/adminRoutes.js");
 const blogRoutes = require("./routes/blogRoutes.js");
 const aboutRoutes = require("./routes/aboutRoutes.js");
+const authRoutes = require("./routes/authRoutes.js");
+const { requireAuth, checkUser } = require("./middlewares/authMiddleware.js");
 
 const app = express();
 
@@ -13,11 +16,6 @@ app.set("view engine", "ejs");
 
 const dbURL =
     "mongodb+srv://mustafi:6WQTCuJBPVMOkN2j@cluster0.yq3y83i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-app.use(morgan("tiny"));
-app.use(express.static("public"));
-// app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
 
 mongoose
     .connect(dbURL)
@@ -33,6 +31,13 @@ mongoose
     .catch((error) => {
         console.log(error);
     });
+
+app.use(morgan("tiny"));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.get('*', checkUser)
 
 app.get("/all", (req, res) => {
     Blog.find()
@@ -53,14 +58,10 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login");
 });
+app.use(authRoutes);
 app.use(aboutRoutes);
 app.use(blogRoutes);
-app.use(adminRoutes);
-
-app.use((req, res) => {
-    // res.status(404).sendFile("./views/404.html", { root: __dirname });
-    res.render("404");
-});
+app.use(requireAuth, adminRoutes);
 
 //ejs de render metotlarıyla ilerliyoruz
 

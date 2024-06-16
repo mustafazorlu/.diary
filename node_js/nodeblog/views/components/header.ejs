@@ -7,8 +7,14 @@
         <li>
             <a href="/about">hakkımızda</a>
         </li>
+        <% if(user) { %>
+        <li>
+            <a href="/logout">logout</a>
+        </li>
+        <% }else{ %>
         <li>
             <a href="/login">login</a>
         </li>
+        <% } %>
     </ul>
 </nav>
